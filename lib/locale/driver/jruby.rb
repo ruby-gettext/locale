@@ -38,8 +38,9 @@ module Locale
           locale = java.util.Locale.getDefault
           variant = locale.getVariant 
           variants = []
-          return nil if variant.nil? or variant.empty?
-          variants = [variant]
+          if variant != nil and variant.size > 0
+            variants = [variant]
+          end
           locales = TagList.new([Locale::Tag::Common.new(locale.getLanguage, nil,
                                                          locale.getCountry, 
                                                          variants)])
