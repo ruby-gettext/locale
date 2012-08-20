@@ -4,6 +4,7 @@ require 'test/unit'
 class TestDetectGeneral < Test::Unit::TestCase
 
   def setup
+    Locale.init
     Locale.clear_all
     ENV["LC_ALL"] = nil
     ENV["LC_MESSAGES"] = nil
