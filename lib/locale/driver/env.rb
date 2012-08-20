@@ -21,6 +21,7 @@
 
 require 'locale/tag'
 require 'locale/taglist'
+require "locale/driver"
 
 module Locale 
   module Driver

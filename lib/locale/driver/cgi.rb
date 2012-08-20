@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require "locale/driver"
+
 module Locale
   # Locale::Driver module for CGI.
   # Detect the user locales and the charset from CGI parameters.
