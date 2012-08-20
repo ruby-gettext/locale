@@ -6,12 +6,10 @@ require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-require 'locale/version'
+require "bundler/gem_helper"
 
 #desc "Default Task"
 #task :default => [ :test ]
-
-PKG_VERSION = Locale::VERSION
 
 # Run the unit tests
 task :test do 
@@ -36,23 +34,16 @@ Rake::RDocTask.new { |rdoc|
   rdoc.template = allison if allison.size > 0
 }
 
-desc "Create gem and tar.gz"
-spec = Gem::Specification.new do |s|
-  s.name = 'locale'
-  s.version = PKG_VERSION
-  s.summary = 'Ruby-Locale is the pure ruby library which provides basic APIs for localization.'
-  s.author = 'Masao Mutoh'
-  s.email = 'mutomasa at gmail.com'
-  s.homepage = 'http://locale.rubyforge.org/'
-  s.rubyforge_project = "locale"
-  s.files = FileList['**/*'].to_a.select{|v| v !~ /pkg|CVS/}
-  s.require_path = 'lib'
-  s.bindir = 'bin'
-  s.has_rdoc = true
-  s.description = <<-EOF
-    Ruby-Locale is the pure ruby library which provides basic APIs for localization.
-  EOF
+class Bundler::GemHelper
+  undef_method :version_tag
+  def version_tag
+    version
+  end
 end
+
+helper = Bundler::GemHelper.new(base_dir)
+helper.install
+spec = helper.gemspec
 
 unless RUBY_PLATFORM =~ /win32/
   Rake::PackageTask.new("ruby-locale", PKG_VERSION) do |o|
@@ -66,17 +57,4 @@ Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
   p.need_tar_gz = false
   p.need_zip = false
-end
-
-desc "Publish the release files to RubyForge."
-task :release => [ :package ] do
-  require 'rubyforge'
-
-  rubyforge = RubyForge.new
-  rubyforge.configure
-  rubyforge.login
-  rubyforge.add_release("locale", "locale",
-                        PKG_VERSION,
-                        "pkg/locale-#{PKG_VERSION}.gem",
-                        "pkg/ruby-locale-#{PKG_VERSION}.tar.gz")
 end
