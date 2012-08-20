@@ -180,6 +180,8 @@ class TestDetectGeneral < Test::Unit::TestCase
   end
 
   def test_wrong_envs
+    omit("JRuby never use default") if jruby?
+
     ENV["LC_ALL"] = nil
     ENV["LANGUAGE"] = "g"
     Locale.default = "de"
@@ -209,4 +211,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     
   end
 
+  private
+  def jruby?
+    RUBY_PLATFORM == "java"
+  end
 end
