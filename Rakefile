@@ -19,7 +19,6 @@
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
@@ -34,22 +33,6 @@ task :test do
     ruby "-Ilib #{v}"
   end
 end
-
-Rake::RDocTask.new { |rdoc|
-  begin
-    allison = `allison --path`.chop
-  rescue Exception
-    allison = ""
-  end
-  rdoc.rdoc_dir = 'doc'
-  rdoc.title    = "Ruby-Locale library"
-  rdoc.options << "--line-numbers" << "--inline-source" <<
-      "--accessor" << "cattr_accessor=object" << "--charset" << "utf-8"
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('ChangeLog')
-  rdoc.rdoc_files.add('lib')
-  rdoc.template = allison if allison.size > 0
-}
 
 class Bundler::GemHelper
   undef_method :version_tag
