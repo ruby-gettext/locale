@@ -60,6 +60,6 @@ begin
       assert_equal "CP1252", Locale::Driver::Win32.charset
     end
   end
-rescue LoadError, NameError
+rescue LoadError, DL::DLError, NameError
   puts "win32 test was skipped."
 end
