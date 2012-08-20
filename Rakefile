@@ -29,13 +29,6 @@ base_dir = File.expand_path(File.dirname(__FILE__))
 desc "Run tests"
 task :default => :test
 
-desc "Run tests"
-task :test do
-  Dir.glob("test/test_*.rb").each do |v|
-    ruby "-Ilib #{v}"
-  end
-end
-
 class Bundler::GemHelper
   undef_method :version_tag
   def version_tag
@@ -59,4 +52,11 @@ Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
   p.need_tar_gz = false
   p.need_zip = false
+end
+
+desc "Run tests"
+task :test do
+  Dir.glob("test/test_*.rb").each do |v|
+    ruby "-Ilib #{v}"
+  end
 end
