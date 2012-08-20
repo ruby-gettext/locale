@@ -1,15 +1,23 @@
-=begin
-  locale/driver/jruby.rb
-
-  Copyright (C) 2007,2008 Masao Mutoh
-
-  You may redistribute it and/or modify it under the same
-  license terms as Ruby.
-
-  Original: Ruby-GetText-Package-1.92.0.
-
-  $Id: jruby.rb 27 2008-12-03 15:06:50Z mutoh $
-=end
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2007-2008 Masao Mutoh
+#
+# Original: Ruby-GetText-Package-1.92.0.
+# License: Ruby's or LGPL
+#
+# This library is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require File.join(File.dirname(__FILE__), 'env')
 require 'java'
@@ -47,6 +55,7 @@ module Locale
         charset
       end
     end
+
+    MODULES[:jruby] = JRuby
   end
-  @@locale_driver_module = Driver::JRuby
 end

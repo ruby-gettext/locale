@@ -14,6 +14,7 @@
 require 'locale/util/memoizable'
 require 'locale/tag'
 require 'locale/taglist'
+require 'locale/driver'
 require 'locale/version'
 
 # Locale module manages the locale informations of the application.
@@ -21,7 +22,7 @@ require 'locale/version'
 # Almost of all i18n/l10n programs use this APIs only.
 module Locale
   @@default_tag = nil
-  @@locale_driver_module = nil
+  @@driver_name = nil
 
   ROOT = File.dirname(__FILE__)
 
@@ -30,6 +31,7 @@ module Locale
   module_function
   def require_driver(name)  #:nodoc:
     require File.join(ROOT, "locale/driver", name.to_s)
+    @@driver_name = name.to_sym
   end
 
   def create_language_tag(tag)  #:nodoc:
@@ -86,10 +88,8 @@ module Locale
   #
   # * Returns: the driver module.
   def driver_module 
-    unless @@locale_driver_module
-      Locale.init
-    end
-    @@locale_driver_module
+    Locale.init if @@driver_name.nil?
+    Driver::MODULES[@@driver_name]
   end
 
   DEFAULT_LANGUAGE_TAG = Locale::Tag::Simple.new("en") #:nodoc:
