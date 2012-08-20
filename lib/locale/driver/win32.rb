@@ -22,9 +22,7 @@
 require "locale/driver/env"
 require "locale/driver/win32_table"
 
-unless Win32API
-  require 'dl/win32'
-end
+require "dl/import"
 
 module Locale
   # Locale::Driver::Win32 module for win32.
@@ -32,11 +30,16 @@ module Locale
   # This is a low-level class. Application shouldn't use this directly.
   module Driver
     module Win32
+      module Kernel32
+        extend DL::Importer
+        dlload "kernel32.dll"
+        extern "int GetThreadLocale()"
+      end
+
       include Win32Table
 
       $stderr.puts self.name + " is loaded." if $DEBUG
-      
-      @@win32 = nil
+
       @@current_locale_id = nil
 
       module_function
@@ -61,8 +64,7 @@ module Locale
         if @@current_locale_id
           @@current_locale_id
         else
-          @@win32 ||= Win32API.new("kernel32.dll", "GetThreadLocale", nil, "i")
-          @@win32.call
+          Kernel32.GetThreadLocale
         end
       end
 
