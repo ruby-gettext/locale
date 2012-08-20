@@ -39,7 +39,6 @@ spec = helper.gemspec
 
 desc "Run tests"
 task :test do
-  Dir.glob("test/test_*.rb").each do |v|
-    ruby "-Ilib #{v}"
-  end
+  options = ARGV - Rake.application.top_level_tasks
+  ruby("-rtest-unit", "-Ilib", "-erun", "test", *options)
 end
