@@ -1,4 +1,4 @@
-# -*- mode: ruby; coding: utf-8 -*-
+#!/usr/bin/env ruby
 #
 # Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
 #
@@ -17,28 +17,16 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'rake'
-require 'rake/testtask'
-require "bundler/gem_helper"
+$VERBOSE = true
 
-base_dir = File.expand_path(File.dirname(__FILE__))
+base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+lib_dir = File.join(base_dir, "lib")
+test_dir = File.join(base_dir, "test")
 
-desc "Run tests"
-task :default => :test
+$LOAD_PATH.unshift(lib_dir)
+$LOAD_PATH.unshift(test_dir)
 
-class Bundler::GemHelper
-  undef_method :version_tag
-  def version_tag
-    version
-  end
-end
+require "test-unit"
+require "test/unit/notify"
 
-helper = Bundler::GemHelper.new(base_dir)
-helper.install
-spec = helper.gemspec
-
-desc "Run tests"
-task :test do
-  options = ARGV - Rake.application.top_level_tasks
-  ruby("test/run-test.rb", *options)
-end
+exit Test::Unit::AutoRunner.run(true)
