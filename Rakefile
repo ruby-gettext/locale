@@ -19,9 +19,6 @@
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
-
 require "bundler/gem_helper"
 
 base_dir = File.expand_path(File.dirname(__FILE__))
@@ -39,20 +36,6 @@ end
 helper = Bundler::GemHelper.new(base_dir)
 helper.install
 spec = helper.gemspec
-
-unless RUBY_PLATFORM =~ /win32/
-  Rake::PackageTask.new("ruby-locale", PKG_VERSION) do |o|
-    o.package_files = FileList['**/*'].to_a.select{|v| v !~ /pkg|CVS/}
-    o.need_tar_gz = true
-    o.need_zip = false
-  end
-end
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-  p.need_tar_gz = false
-  p.need_zip = false
-end
 
 desc "Run tests"
 task :test do
