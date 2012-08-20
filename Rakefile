@@ -40,5 +40,5 @@ spec = helper.gemspec
 desc "Run tests"
 task :test do
   options = ARGV - Rake.application.top_level_tasks
-  ruby("-rtest-unit", "-Ilib", "-erun", "test", *options)
+  ruby("-rubygems", "-rtest-unit", "-Ilib", "-erun", "test", *options)
 end
