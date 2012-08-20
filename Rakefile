@@ -24,6 +24,8 @@ require 'rake/gempackagetask'
 
 require "bundler/gem_helper"
 
+base_dir = File.expand_path(File.dirname(__FILE__))
+
 desc "Run tests"
 task :default => :test
 
