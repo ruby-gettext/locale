@@ -69,42 +69,42 @@ module Locale
 
       # Gets the charset from CGI parameters. (Based on RFC2616)
       #  * Returns: the charset (HTTP_ACCEPT_CHARSET or nil).
-     def charset
-       req = Thread.current[:current_request]
-       return nil unless req
+      def charset
+        req = Thread.current[:current_request]
+        return nil unless req
 
-       charsets = req[:accept_charset]
-       if charsets and charsets.size > 0
-         num = charsets.index(',')
-         charset = num ? charsets[0, num] : charsets
-         charset = nil if charset == "*"
-       else
-         charset = nil
-       end
-       charset
-     end
+        charsets = req[:accept_charset]
+        if charsets and charsets.size > 0
+          num = charsets.index(',')
+          charset = num ? charsets[0, num] : charsets
+          charset = nil if charset == "*"
+        else
+          charset = nil
+        end
+        charset
+      end
 
-     # Set a request.
-     # 
-     # * query_langs: An Array of QUERY_STRING value "lang".
-     # * cookie_langs: An Array of cookie value "lang".
-     # * accept_language: The value of HTTP_ACCEPT_LANGUAGE
-     # * accept_charset: The value of HTTP_ACCEPT_CHARSET
-     def set_request(query_langs, cookie_langs, accept_language, accept_charset)
-       Locale.clear
-       Thread.current[:current_request] = {
-         :query_langs => query_langs, 
-         :cookie_langs => cookie_langs, 
-         :accept_language => accept_language,
-         :accept_charset => accept_charset
-       }
-       self
-     end
+      # Set a request.
+      # 
+      # * query_langs: An Array of QUERY_STRING value "lang".
+      # * cookie_langs: An Array of cookie value "lang".
+      # * accept_language: The value of HTTP_ACCEPT_LANGUAGE
+      # * accept_charset: The value of HTTP_ACCEPT_CHARSET
+      def set_request(query_langs, cookie_langs, accept_language, accept_charset)
+        Locale.clear
+        Thread.current[:current_request] = {
+          :query_langs => query_langs, 
+          :cookie_langs => cookie_langs, 
+          :accept_language => accept_language,
+          :accept_charset => accept_charset
+        }
+        self
+      end
 
-     # Clear the current request.
-     def clear_current_request
-       Thread.current[:current_request] = nil
-     end
+      # Clear the current request.
+      def clear_current_request
+        Thread.current[:current_request] = nil
+      end
     end
 
     MODULES[:cgi] = CGI
