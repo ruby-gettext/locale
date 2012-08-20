@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require File.join(File.dirname(__FILE__), 'env')
+require "locale/driver/env"
 
 module Locale 
   # Locale::Driver::Posix module for Posix OS (Unix)
