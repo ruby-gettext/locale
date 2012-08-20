@@ -28,5 +28,6 @@ $LOAD_PATH.unshift(test_dir)
 
 require "test-unit"
 require "test/unit/notify"
+require "test/unit/rr"
 
 exit Test::Unit::AutoRunner.run(true)
