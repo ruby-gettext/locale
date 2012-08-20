@@ -25,11 +25,11 @@ require 'rake/gempackagetask'
 
 require "bundler/gem_helper"
 
-#desc "Default Task"
-#task :default => [ :test ]
+desc "Run tests"
+task :default => :test
 
-# Run the unit tests
-task :test do 
+desc "Run tests"
+task :test do
   Dir.glob("test/test_*.rb").each do |v|
     ruby "-Ilib #{v}"
   end
