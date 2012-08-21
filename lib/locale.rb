@@ -24,13 +24,11 @@ module Locale
   @@default_tag = nil
   @@driver_name = nil
 
-  ROOT = File.dirname(__FILE__)
-
   include Locale::Util::Memoizable
 
   module_function
   def require_driver(name)  #:nodoc:
-    require File.join(ROOT, "locale/driver", name.to_s)
+    require "locale/driver/#{name}"
     @@driver_name = name.to_sym
   end
 
