@@ -35,14 +35,14 @@ module Locale
   end
 
   def create_language_tag(tag)  #:nodoc:
-    if tag
-      if tag.kind_of? Locale::Tag::Simple
-        tag
-      else
-        Locale::Tag.parse(tag)
-      end
+    case tag
+    when nil
+    when Locale::Tag::Simple
+      tag
+    when Locale::TagList
+      tag[0]
     else
-      nil
+      Locale::Tag.parse(tag)
     end
   end
 

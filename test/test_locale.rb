@@ -23,4 +23,13 @@ class TestLocale < Test::Unit::TestCase
       assert_equal([Locale::Tag::Simple.new("ja", "JP")], Locale.current)
     end
   end
+
+  class TestDefault < self
+    def test_set_tag_list
+      default_tag_list = Locale::TagList.new
+      default_tag_list << Locale::Tag::Simple.new("ja", "JP")
+      Locale.default = default_tag_list
+      assert_equal(Locale::Tag::Simple.new("ja", "JP"), Locale.default)
+    end
+  end
 end
