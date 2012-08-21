@@ -145,7 +145,12 @@ module Locale
     if tags[0]
       languages = Locale::TagList.new
       tags.each do |tag|
-        languages << create_language_tag(tag)
+        case tag
+        when Locale::TagList
+          languages.concat(tag)
+        else
+          languages << create_language_tag(tag)
+        end
       end
     end
     Thread.current[:current_languages] = languages
