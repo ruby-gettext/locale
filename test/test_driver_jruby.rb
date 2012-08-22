@@ -2,7 +2,7 @@
 #
 # Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
 # Copyright (C) 2012  Hleb Valoshka
-# Copyright (C) 2009  Mutoh Masao
+# Copyright (C) 2009  Masao Mutoh
 #
 # License: Ruby's or LGPL
 #
