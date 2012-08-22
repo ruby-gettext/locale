@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012  Hleb Valoshka
 # Copyright (C) 2008  Masao Mutoh
 #
 # Original: Ruby-GetText-Package-1.92.0.
@@ -33,11 +34,11 @@ module Locale
     module Env
       module_function
 
-      # Gets the locale from environment variable. (LC_ALL > LC_MESSAGES > LANG)
+      # Gets the locale from environment variable. (LC_ALL > LC_CTYPES > LANG)
       # Returns: the locale as Locale::Tag::Posix.
       def locale
         # At least one environment valiables should be set on *nix system.
-        [ENV["LC_ALL"], ENV["LC_MESSAGES"], ENV["LANG"]].each do |loc|
+        [ENV["LC_ALL"], ENV["LC_CTYPES"], ENV["LANG"]].each do |loc|
           if loc != nil and loc.size > 0
             return Locale::Tag::Posix.parse(loc)
           end
@@ -45,7 +46,7 @@ module Locale
         nil
       end
 
-      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_MESSAGES > LANG)
+      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_CTYPES > LANG)
       # * Returns: an Array of the locale as Locale::Tag::Posix or nil.
       def locales
         locales = ENV["LANGUAGE"]
