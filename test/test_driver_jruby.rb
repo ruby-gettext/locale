@@ -12,7 +12,9 @@ begin
     end
 
     def set_locale(tag)
-      java.util.Locale.setDefault(java.util.Locale.new(tag.language, tag.region, tag.variants.join("_")))
+      locale = java.util.Locale.new(tag.language, tag.region,
+                                    tag.variants.join("_"))
+      java.util.Locale.setDefault(locale)
     end
 
     def test_charset
