@@ -1,6 +1,7 @@
 =begin
   locale.rb - Locale module
 
+  Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
   Copyright (C) 2002-2009  Masao Mutoh
 
   You may redistribute it and/or modify it under the same
@@ -15,6 +16,7 @@ require 'locale/util/memoizable'
 require 'locale/tag'
 require 'locale/taglist'
 require 'locale/driver'
+require 'locale/middleware'
 require 'locale/version'
 
 # Locale module manages the locale informations of the application.
