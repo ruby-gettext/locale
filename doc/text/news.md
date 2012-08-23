@@ -16,6 +16,8 @@ Ruby 1.9 on Windows support release.
     [Reported by Martin Hradil and Hleb Valoshka]
   * Supported `Locale.init` on `$SAFE > 0`.
     [GitHub#mutoh/locale#5] [Reported by Hleb Valoshka]
+  * Added a Rack middleware `Locale::Middleware` that initializes locale by
+    client request.
 
 ### Tests
 
