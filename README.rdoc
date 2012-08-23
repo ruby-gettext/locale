@@ -20,24 +20,15 @@ handle major locale ID standards.
 * Support Ruby 1.8.7, Ruby 1.9.1, JRuby 1.1.4. Tested on Win32 and Linux.
 
 == Website
-* http://www.yotabanana.com/hiki/ruby-locale.html
-* http://locale.rubyforge.org/
+* https://github.com/ruby-gettext/locale
 
 == Requirements
 * Ruby-1.8.7 or later <http://www.ruby-lang.org/ja/>
 * JRuby-1.1.4 or later <http://jruby.codehaus.org/>
 
 == Install
-* gem:
-  ($ su)
-   # gem install locale
 
-* tar-ball:
-  Download tar-ball from http://rubyforge.org/projects/locale/
-  De-Compress archive and enter its top directory.
-  Then type:
-   ($ su)
-   # ruby setup.rb
+  % gem install locale
 
 == The simplest usage
 
@@ -63,10 +54,6 @@ LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
   * Copyright (C) 2006 Brian Pontarelli, Antonio Terceiro
   * Copyright (C) 2008,2009 Masao Mutoh <mutomasa at gmail.com>
 
-* setup.rb version 3.4.1
-  * Copyright (C) 2000-2005 Minero Aoki <aamine at loveruby.net>
-  * This file is released under LGPL. See the top of the setup.rb.
-
 * Others(Some files are separated from Ruby-GetText-Package-1.92.0)
   * Copyright (C) 2008,2009 Masao Mutoh <mutoh at highwhay.ne.jp>
 
@@ -78,8 +65,8 @@ LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
 * memoizable.rb
   * from ActiveSupport-2.2.0 <http://rubyforge.org/projects/activesupport/>
 
-* Ruby-GetText-Package-1.92.0
-  * by Masao Mutoh <http://www.yotabanana.com/hiki/ruby-gettext.html>
+* gettext gem
+  * by The ruby-gettext project <https://ruby-gettext.github.com/>
 
 === Documents
 * The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition 
@@ -108,4 +95,11 @@ LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
 * ISO 3166
 
 == Maintainer
+
+=== Active
+
+Kouhei Sutou <kou@clear-code.com>
+
+=== Inactive
+
 Masao Mutoh <mutomasa at gmail.com>
