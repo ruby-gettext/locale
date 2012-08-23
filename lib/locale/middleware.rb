@@ -31,7 +31,7 @@ module Locale
                          [request.cookies["lang"]],
                          environment["HTTP_ACCEPT_LANGUAGE"],
                          environment["HTTP_ACCEPT_CHARSET"])
-      @application.call
+      @application.call(environment)
     end
   end
 end
