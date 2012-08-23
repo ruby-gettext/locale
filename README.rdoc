@@ -1,10 +1,15 @@
-= Ruby-Locale
+= locale - locale for Ruby
 
-Ruby-Locale is the pure ruby library which provides basic and general purpose
-APIs for localization.
-It aims to support all environments which ruby works and all kind of programs
-(GUI, WWW, library, etc), and becomes the hub of other i18n/l10n libs/apps to 
-handle major locale ID standards. 
+Locale gem is the pure ruby library which provides basic and general
+purpose APIs for localization.
+
+This library was called as "Ruby-Locale". Since 2.0.6, this library is
+called just "locale". You can call this library as "locale gem" or
+"Ruby Locale" to distinguish from other "locale"s.
+
+This library aims to support all environments which Ruby works and all
+kind of programs (GUI, WWW, library, etc), and becomes the hub of
+other i18n/l10n libs/apps to handle major locale ID standards.
 
 * Manage Locale ID(Language Tag)
   * Each thread has a Locale ID.
