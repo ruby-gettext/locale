@@ -16,7 +16,6 @@ require 'locale/util/memoizable'
 require 'locale/tag'
 require 'locale/taglist'
 require 'locale/driver'
-require 'locale/middleware'
 require 'locale/version'
 
 # Locale module manages the locale informations of the application.
