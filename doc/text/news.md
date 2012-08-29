@@ -36,7 +36,7 @@ Ruby 1.9 on Windows support release.
   * Fixed a problem that tests for Windows break other tests on non
     Windows platform. [Patch by J. Pablo Fernández]
   * [jruby] Fixed wrong variant format.
-    [GitHub#mutoh/locale#5] [Patch by Hleb Valoshka.]
+    [GitHub#mutoh/locale#5] [Patch by Hleb Valoshka]
   * Fixed wrong environment variable check. `LC_CTYPES` is checked
     instead of `LC_MESSAGES`.
     [GitHub#mutoh/locale#5] [Debian#520181]
