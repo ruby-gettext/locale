@@ -50,3 +50,4 @@ Ruby 1.9 on Windows support release.
   * J. Pablo Fernández
   * Martin Hradil
   * Hleb Valoshka
+  * Adeodato Simó
