@@ -1,5 +1,17 @@
 # News
 
+## <a id="2-0-7">2.0.7</a>: 2012-08-29
+
+Package fix release.
+
+### Fixes
+
+  * Added missing this file. [Reported by Takahiro Kambe]
+
+### Thanks
+
+  * Takahiro Kambe
+
 ## <a id="2-0-6">2.0.6</a>: 2012-08-29
 
 Ruby 1.9 on Windows support release.
