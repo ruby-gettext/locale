@@ -1,5 +1,13 @@
 # News
 
+## <a id="2-0-8">2.0.8</a>: 2012-08-29
+
+Package fix release.
+
+### Fixes
+
+  * Added missing .yardopts file.
+
 ## <a id="2-0-7">2.0.7</a>: 2012-08-29
 
 Package fix release.
