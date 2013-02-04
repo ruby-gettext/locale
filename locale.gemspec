@@ -50,4 +50,5 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
   s.add_development_dependency("test-unit")
   s.add_development_dependency("test-unit-notify")
   s.add_development_dependency("test-unit-rr")
+  s.license = "Ruby or LGPL"
 end
