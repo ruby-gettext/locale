@@ -1,6 +1,6 @@
 # -*- mode: ruby; coding: utf-8 -*-
 #
-# Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2013  Kouhei Sutou <kou@clear-code.com>
 # Copyright (C) 2009  Masao Mutoh
 #
 # License: Ruby's or LGPL
@@ -32,6 +32,7 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
   s.authors = ["Kouhei Sutou", "Masao Mutoh"]
   s.email = ["kou@clear-code.com", "mutomasa at gmail.com"]
   s.homepage = "https://github.com/ruby-gettext/locale"
+  s.licenses = ["Ruby", "LGPLv3+"]
   s.require_paths = ["lib"]
   Dir.chdir(base_dir) do
     s.files = Dir.glob("{lib,samples}/**/*").find_all do |path|
