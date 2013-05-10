@@ -31,4 +31,31 @@ class TestTagList < Test::Unit::TestCase
     assert_equal ["y-aaa"], list.extensions
     assert_equal "x-bbb", list.privateuse
   end
+
+  class TestCharset < self
+    def setup
+      ENV["LC_ALL"] = nil
+      ENV["LC_CTYPE"] = nil
+      ENV["LANG"] = nil
+      ENV["LANGUAGE"] = nil
+    end
+
+    def test_empty
+      list = Locale::TagList.new
+      ENV["LC_ALL"] = "en_US.UTF-8"
+      assert_equal("UTF-8", list.charset)
+    end
+
+    def test_have_charset_tag
+      list = Locale::TagList.new([Locale::Tag.parse("en_US.ISO-8859-1")])
+      ENV["LC_ALL"] = "en_US.UTF-8"
+      assert_equal("ISO-8859-1", list.charset)
+    end
+
+    def test_no_charset_tag
+      list = Locale::TagList.new([Locale::Tag.parse("en_US")])
+      ENV["LC_ALL"] = "en_US.UTF-8"
+      assert_equal("UTF-8", list.charset)
+    end
+  end
 end
