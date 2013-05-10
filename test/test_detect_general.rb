@@ -28,14 +28,14 @@ class TestDetectGeneral < Test::Unit::TestCase
     Locale.init
     Locale.clear_all
     ENV["LC_ALL"] = nil
-    ENV["LC_CTYPES"] = nil
+    ENV["LC_CTYPE"] = nil
     ENV["LANG"] = nil
     ENV["LANGUAGE"] = nil
   end
 
   def test_lc_all
     ENV["LC_ALL"] = "ja_JP.eucJP"
-    ENV["LC_CTYPES"] = "zh_CN.UTF-8"  #Ignored.
+    ENV["LC_CTYPE"] = "zh_CN.UTF-8"  #Ignored.
     ENV["LANG"] = "ko_KR.UTF-8"  #Ignored.
     ENV["LANGUAGE"] = nil
 
@@ -49,9 +49,9 @@ class TestDetectGeneral < Test::Unit::TestCase
     assert_equal "eucJP", Locale.charset
   end
 
-  def test_lc_messages
+  def test_lc_ctype
     ENV["LC_ALL"] = nil
-    ENV["LC_CTYPES"] = "ja_JP.eucJP"
+    ENV["LC_CTYPE"] = "ja_JP.eucJP"
     ENV["LANG"] = "ko_KR.UTF-8"  #Ignored.
     ENV["LANGUAGE"] = nil
 
@@ -67,7 +67,7 @@ class TestDetectGeneral < Test::Unit::TestCase
 
   def test_lang
     ENV["LC_ALL"] = nil
-    ENV["LC_CTYPES"] = nil
+    ENV["LC_CTYPE"] = nil
     ENV["LANG"] = "ja_JP.eucJP"
     ENV["LANGUAGE"] = nil
 
@@ -83,7 +83,7 @@ class TestDetectGeneral < Test::Unit::TestCase
 
   def test_lang_complex
     ENV["LC_ALL"] = "zh_CN.UTF-8"  # Ignored.
-    ENV["LC_CTYPES"] = "ko_KR.UTF-8" #Ingored.
+    ENV["LC_CTYPE"] = "ko_KR.UTF-8" #Ingored.
     ENV["LANG"] = "en_US.UTF-8"  # Ignored.
     ENV["LANGUAGE"] ="ja_JP.eucJP:zh_CN.UTF-8"
 

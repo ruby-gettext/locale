@@ -6,7 +6,7 @@ begin
 
     def setup
       ENV["LC_ALL"] = nil
-      ENV["LC_CTYPES"] = nil
+      ENV["LC_CTYPE"] = nil
       ENV["LANG"] = nil
       ENV["LANGUAGE"] = nil
       Locale::Driver::Win32.set_thread_locale_id(nil)

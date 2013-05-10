@@ -30,7 +30,7 @@ module Locale
       $stderr.puts self.name + " is loaded." if $DEBUG
 
       module_function
-      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_CTYPES > LANG)
+      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_CTYPE > LANG)
       # Only LANGUAGE accept plural languages such as "nl_BE;
       # * Returns: an Array of the locale as Locale::Tag::Posix or nil.
       def locales
