@@ -34,11 +34,11 @@ module Locale
     module Env
       module_function
 
-      # Gets the locale from environment variable. (LC_ALL > LC_CTYPE > LANG)
+      # Gets the locale from environment variable. (LC_ALL > LC_MESSAGES > LANG)
       # Returns: the locale as Locale::Tag::Posix.
       def locale
         # At least one environment valiables should be set on *nix system.
-        [ENV["LC_ALL"], ENV["LC_CTYPE"], ENV["LANG"]].each do |loc|
+        [ENV["LC_ALL"], ENV["LC_MESSAGES"], ENV["LANG"]].each do |loc|
           if loc != nil and loc.size > 0
             return Locale::Tag::Posix.parse(loc)
           end
@@ -46,7 +46,7 @@ module Locale
         nil
       end
 
-      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_CTYPE > LANG)
+      # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_MESSAGES > LANG)
       # * Returns: an Array of the locale as Locale::Tag::Posix or nil.
       def locales
         locales = ENV["LANGUAGE"]
@@ -61,14 +61,16 @@ module Locale
         nil
       end
 
-      # Gets the charset from environment variable or return nil.
+      # Gets the charset from environment variables
+      # (LC_ALL > LC_CTYPE > LANG) or return nil.
       # * Returns: the system charset.
       def charset  # :nodoc:
-        if loc = locale
-          loc.charset
-        else
-          nil
+        [ENV["LC_ALL"], ENV["LC_CTYPE"], ENV["LANG"]].each do |env|
+          next if env.nil?
+          next if env.empty?
+          return Locale::Tag::Posix.parse(env).charset
         end
+        nil
       end
     end
 
