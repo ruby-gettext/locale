@@ -24,11 +24,11 @@ require 'locale/tag'
 require 'locale/taglist'
 require "locale/driver"
 
-module Locale 
+module Locale
   module Driver
     # Locale::Driver::Env module.
     # Detect the user locales and the charset.
-    # All drivers(except CGI) refer environment variables first and use it 
+    # All drivers(except CGI) refer environment variables first and use it
     # as the locale if it's defined.
     # This is a low-level module. Application shouldn't use this directly.
     module Env
