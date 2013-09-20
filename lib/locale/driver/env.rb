@@ -34,16 +34,24 @@ module Locale
     module Env
       module_function
 
-      # Gets the locale from environment variable. (LC_ALL > LC_MESSAGES > LANG)
+      # Gets the locale from environment variable.
+      # Priority order except charset is LC_ALL > LC_MESSAGES > LANG.
+      # Priority order for charset is LC_ALL > LC_CTYPE > LANG.
       # Returns: the locale as Locale::Tag::Posix.
       def locale
-        # At least one environment valiables should be set on *nix system.
-        [ENV["LC_ALL"], ENV["LC_MESSAGES"], ENV["LANG"]].each do |loc|
-          if loc != nil and loc.size > 0
-            return Locale::Tag::Posix.parse(loc)
-          end
-        end
-        nil
+        lc_all = Private.parse(ENV["LC_ALL"])
+        return lc_all if lc_all
+
+        lc_messages = Private.parse(ENV["LC_MESSAGES"])
+        lang = Private.parse(ENV["LANG"])
+
+        tag = lc_messages || lang
+        return nil if tag.nil?
+
+        lc_ctype = Private.parse(ENV["LC_CTYPE"])
+        tag.charset = lc_ctype.charset if lc_ctype
+
+        tag
       end
 
       # Gets the locales from environment variables. (LANGUAGE > LC_ALL > LC_MESSAGES > LANG)

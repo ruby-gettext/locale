@@ -36,6 +36,7 @@ class TestDetectGeneral < Test::Unit::TestCase
 
   def test_lc_all
     ENV["LC_ALL"] = "ja_JP.eucJP"
+    ENV["LC_CTYPE"] = "fr_FR.ISO-8859-1"  #Ignored.
     ENV["LC_MESSAGES"] = "zh_CN.UTF-8"  #Ignored.
     ENV["LANG"] = "ko_KR.UTF-8"  #Ignored.
     ENV["LANGUAGE"] = nil
@@ -52,8 +53,9 @@ class TestDetectGeneral < Test::Unit::TestCase
 
   def test_lc_messages
     ENV["LC_ALL"] = nil
+    ENV["LC_CTYPE"] = nil
     ENV["LC_MESSAGES"] = "ja_JP.eucJP"
-    ENV["LANG"] = "ko_KR.UTF-8"  #Ignored.
+    ENV["LANG"] = "ko_KR.UTF-8"  #Ignored except charset.
     ENV["LANGUAGE"] = nil
 
     lang = Locale.current[0]
@@ -66,8 +68,26 @@ class TestDetectGeneral < Test::Unit::TestCase
     assert_equal "UTF-8", Locale.charset
   end
 
+  def test_lc_messages_with_lc_ctype
+    ENV["LC_ALL"] = nil
+    ENV["LC_CTYPE"] = "fr_FR.ISO-8859-1"
+    ENV["LC_MESSAGES"] = "ja_JP.eucJP"
+    ENV["LANG"] = "ko_KR.UTF-8"  #Ignored.
+    ENV["LANGUAGE"] = nil
+
+    lang = Locale.current[0]
+    assert_equal Locale::Tag::Posix, lang.class
+    assert_equal "ja", lang.language
+    assert_equal "JP", lang.region
+    assert_equal "ISO-8859-1", lang.charset
+    assert_equal Locale::Tag::Posix.new("ja", "JP", "ISO-8859-1"), lang
+
+    assert_equal "ISO-8859-1", Locale.charset
+  end
+
   def test_lang
     ENV["LC_ALL"] = nil
+    ENV["LC_CTYPE"] = nil
     ENV["LC_MESSAGES"] = nil
     ENV["LANG"] = "ja_JP.eucJP"
     ENV["LANGUAGE"] = nil
@@ -82,8 +102,26 @@ class TestDetectGeneral < Test::Unit::TestCase
     assert_equal "eucJP", Locale.charset
   end
 
+  def test_lang_with_ctype
+    ENV["LC_ALL"] = nil
+    ENV["LC_CTYPE"] = "fr_FR.ISO-8859-1"
+    ENV["LC_MESSAGES"] = nil
+    ENV["LANG"] = "ja_JP.eucJP"
+    ENV["LANGUAGE"] = nil
+
+    lang = Locale.current[0]
+    assert_equal Locale::Tag::Posix, lang.class
+    assert_equal "ja", lang.language
+    assert_equal "JP", lang.region
+    assert_equal "ISO-8859-1", lang.charset
+    assert_equal Locale::Tag::Posix.new("ja", "JP", "ISO-8859-1"), lang
+
+    assert_equal "ISO-8859-1", Locale.charset
+  end
+
   def test_lang_complex
     ENV["LC_ALL"] = "zh_CN.UTF-8"  # Ignored.
+    ENV["LC_CTYPE"] = "fr_FR.ISO-8859-1" #Ingored.
     ENV["LC_MESSAGES"] = "ko_KR.UTF-8" #Ingored.
     ENV["LANG"] = "en_US.UTF-8"  # Ignored.
     ENV["LANGUAGE"] ="ja_JP.eucJP:zh_CN.UTF-8"
