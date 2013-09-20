@@ -1,5 +1,27 @@
 # News
 
+## <a id="2-0-9">2.0.9</a>: 2013-09-20
+
+Locale handling fix release.
+
+### Improvements
+
+  * Added license metadata to gem package.
+    [GitHub#1] [Suggested by jordimassaguerpla]
+
+### Fixes
+
+  * Added missing .yardopts file.
+  * Fixed a bug that wrong environment value is used.
+    [Debian:#520181][Debian:#690572][GitHub#2]
+    [Reported by Stefano Zacchiroli][Reported by Hleb Valoshka]
+
+### Thanks
+
+  * jordimassaguerpla
+  * Stefano Zacchiroli
+  * Hleb Valoshka
+
 ## <a id="2-0-8">2.0.8</a>: 2012-08-29
 
 Package fix release.
