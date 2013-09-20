@@ -66,11 +66,20 @@ module Locale
       # * Returns: the system charset.
       def charset  # :nodoc:
         [ENV["LC_ALL"], ENV["LC_CTYPE"], ENV["LANG"]].each do |env|
-          next if env.nil?
-          next if env.empty?
-          return Locale::Tag::Posix.parse(env).charset
+          tag = Private.parse(env)
+          next if tag.nil?
+          return tag.charset
         end
         nil
+      end
+
+      module Private
+        module_function
+        def parse(env_value)
+          return nil if env_value.nil?
+          return nil if env_value.empty?
+          Locale::Tag::Posix.parse(env_value)
+        end
       end
     end
 
