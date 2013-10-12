@@ -56,13 +56,11 @@ module Locale
 
       # Set the charset.
       def charset=(val)
-        clear
         @charset = val
       end
 
       # Set the modifier as a String
       def modifier=(val)
-        clear
         @modifier = val
       end
 

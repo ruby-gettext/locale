@@ -13,13 +13,11 @@ require 'locale/tag/common'
 require 'locale/tag/rfc'
 require 'locale/tag/cldr'
 require 'locale/tag/posix'
-require 'locale/util/memoizable'
 
 module Locale
 
   # Language tag / locale identifiers.
   module Tag
-    include Util::Memoizable
     module_function
     # Parse a language tag/locale name and return Locale::Tag
     # object.
@@ -33,7 +31,6 @@ module Locale
       end
       Locale::Tag::Irregular.new(tag)
     end
-    memoize :parse
   end
 end
 

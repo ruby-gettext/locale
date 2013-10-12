@@ -26,7 +26,6 @@ module Locale
       attr_reader :extensions
 
       class << self
-        include Util::Memoizable
         # Parse the language tag and return the new Locale::Tag::CLDR. 
         def parse(tag)
           if tag =~ /\APOSIX\Z/  # This is the special case of POSIX locale but match this regexp.
@@ -49,7 +48,6 @@ module Locale
             nil
           end
         end
-        memoize_dup :parse
       end
 
       # Create Locale::Tag::Cldr.
@@ -63,7 +61,6 @@ module Locale
 
       # Sets the extensions as an Hash.
       def extensions=(val)
-        clear
         @extensions = val
       end
 

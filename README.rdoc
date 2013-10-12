@@ -67,9 +67,6 @@ LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
 * langtag-0.1.0 
   * by Martin Dürst <http://rubyforge.org/projects/langtag/>
 
-* memoizable.rb
-  * from ActiveSupport-2.2.0 <http://rubyforge.org/projects/activesupport/>
-
 * gettext gem
   * by The ruby-gettext project <https://ruby-gettext.github.com/>
 

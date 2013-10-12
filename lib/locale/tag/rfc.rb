@@ -27,7 +27,6 @@ module Locale
       attr_reader :extensions, :privateuse
 
       class << self
-        include Util::Memoizable
         # Parse the language tag and return the new Locale::Tag::Rfc. 
         def parse(tag)
           if tag =~ /\APOSIX\Z/  # This is the special case of POSIX locale but match this regexp.
@@ -55,7 +54,6 @@ module Locale
             nil
           end
         end
-        memoize_dup :parse
       end
 
       def initialize(language, script = nil, region = nil, variants = [],
@@ -66,13 +64,11 @@ module Locale
 
       # Sets the extensions as an Array.
       def extensions=(val)
-        clear
         @extensions = val
       end
 
       # Sets the privateuse as a String
       def privateuse=(val)
-        clear
         @privateuse = val
       end
 

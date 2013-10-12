@@ -33,7 +33,6 @@ module Locale
       attr_reader :script, :variants
 
       class << self
-        include Util::Memoizable
         # Parse the language tag and return the new Locale::Tag::Common. 
         def parse(tag)
           if tag =~ /\APOSIX\Z/  # This is the special case of POSIX locale but match this regexp.
@@ -49,7 +48,6 @@ module Locale
             nil
           end
         end
-        memoize_dup :parse
       end
 
       # Create a Locale::Tag::Common.
@@ -61,7 +59,6 @@ module Locale
       
       # Set the script (with capitalize)
       def script=(val)
-        clear
         @script = val
         @script = @script.capitalize if @script
         @script
@@ -69,7 +66,6 @@ module Locale
 
       # Set the variants as an Array.
       def variants=(val)
-        clear
         @variants = val
       end
 
@@ -88,7 +84,6 @@ module Locale
          self.class.new(language, nil, nil, variants),         #ja-FOO
          self.class.new(language)]                             #ja
       end
-      memoize_dup :candidates
 
       private
       def convert_to(klass)  #:nodoc:

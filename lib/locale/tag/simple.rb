@@ -7,8 +7,6 @@
   license terms as Ruby.
 =end
 
-require 'locale/util/memoizable'
-
 module Locale
   module Tag
     # Abstract language tag class.
@@ -20,8 +18,6 @@ module Locale
     # * ja-JP
     # * ja-392
     class Simple
-      include Util::Memoizable
-
       ALPHA = '[a-z]'
       DIGIT = '[0-9]'
       ALPHANUM = "[a-zA-Z0-9]"
@@ -30,8 +26,6 @@ module Locale
       REGION = "(#{ALPHA}{2}|#{DIGIT}{3})"   # RFC4646 (ISO3166/UN M.49)
 
       TAG_RE = /\A#{LANGUAGE}(?:[_-]#{REGION})?\Z/i
-
-      include Util::Memoizable
 
       attr_reader :language, :region
 
@@ -52,12 +46,10 @@ module Locale
           def to_#{name}
             convert_to(#{name.to_s.capitalize})
           end
-          memoize_dup :to_#{name}
         EOS
       end
         
       class << self
-        include Util::Memoizable
         # Parse the language tag and return the new Locale::Tag::Simple. 
         def parse(tag)
           if tag =~ TAG_RE
@@ -68,7 +60,6 @@ module Locale
             nil
           end
         end
-        memoize_dup :parse
       end
 
       # Create a Locale::Tag::Simple
@@ -85,7 +76,6 @@ module Locale
       def to_s
         to_string
       end
-      memoize :to_s
 
       def to_str  #:nodoc:
         to_s
@@ -102,24 +92,20 @@ module Locale
       def eql?(other) #:nodoc:
         self.==(other)
       end
-      memoize :eql?
       
       def hash #:nodoc:
         "#{self.class}:#{to_s}".hash
       end
-      memoize :hash
 
       def inspect  #:nodoc:
         %Q[#<#{self.class}: #{to_s}>]
       end
-      memoize :inspect
 
       # For backward compatibility.
       def country; region end
 
       # Set the language (with downcase)
       def language=(val)
-        clear
         @language = val
         @language = @language.downcase if @language
         @language
@@ -127,7 +113,6 @@ module Locale
 
       # Set the region (with upcase)
       def region=(val)
-        clear
         @region = val
         @region = @region.upcase if @region
         @region
@@ -138,7 +123,6 @@ module Locale
       def candidates
         [self.class.new(language, region), self.class.new(language)]
       end
-      memoize_dup :candidates
 
       # Convert to the klass(the class of Language::Tag)
       private

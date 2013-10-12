@@ -12,7 +12,6 @@
   $Id: locale.rb 27 2008-12-03 15:06:50Z mutoh $
 =end
 
-require 'locale/util/memoizable'
 require 'locale/tag'
 require 'locale/taglist'
 require 'locale/driver'
@@ -24,8 +23,6 @@ require 'locale/version'
 module Locale
   @@default_tag = nil
   @@driver_name = nil
-
-  include Locale::Util::Memoizable
 
   module_function
   def require_driver(name)  #:nodoc:
@@ -227,7 +224,7 @@ module Locale
                          opts[:supported_language_tags])
   end
 
-  # collect tag candidates and memoize it. 
+  # collect tag candidates.
   # The result is shared from all threads.
   def collect_candidates(type, tags, supported_tags) # :nodoc:
     candidate_tags = tags.collect{|v| v.send("to_#{type}").candidates}
@@ -265,7 +262,6 @@ module Locale
 
     Locale::TagList.new(tags)
   end
-  memoize :collect_candidates
 
   # Gets the current charset.
   #
@@ -276,7 +272,6 @@ module Locale
   def charset
     driver_module.charset || "UTF-8"
   end
-  memoize :charset
 
   # Clear current locale.
   # * Returns: self
@@ -295,7 +290,6 @@ module Locale
       thread[:current_languages] = nil
       thread[:candidates_caches] = nil
     end
-    memoize_clear
     self
   end
 
