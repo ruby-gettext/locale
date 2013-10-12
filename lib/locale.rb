@@ -216,13 +216,8 @@ module Locale
       :type                    => :common,
     }.merge(options)
 
-    if Thread.current[:candidates_caches]
-      cache = Thread.current[:candidates_caches][opts.hash]
-      return cache if cache
-    else
-      Thread.current[:candidates_caches] = {} 
-    end
-    Thread.current[:candidates_caches][opts.hash] =
+    Thread.current[:candidates_caches] ||= {}
+    Thread.current[:candidates_caches][opts] ||=
       collect_candidates(opts[:type], opts[:current],
                          opts[:supported_language_tags])
   end
