@@ -210,8 +210,11 @@ module Locale
   #     The type of language tag. :common, :rfc, :cldr, :posix and 
   #     :simple are available. Default value is :common
   def candidates(options = {})
-    opts = {:supported_language_tags => nil, :current => current,
-      :type => :common}.merge(options)
+    opts = {
+      :supported_language_tags => nil,
+      :current                 => current,
+      :type                    => :common,
+    }.merge(options)
 
     if Thread.current[:candidates_caches]
       cache = Thread.current[:candidates_caches][opts.hash]
