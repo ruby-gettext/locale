@@ -3,7 +3,7 @@
 
   Copyright (C) 2008 Masao Mutoh
   Copyright (C) 2013 Kouhei Sutou <kou@clear-code.com>
- 
+
   You may redistribute it and/or modify it under the same
   license terms as Ruby.
 =end
