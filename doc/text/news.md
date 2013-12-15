@@ -1,5 +1,18 @@
 # News
 
+## <a id="2-1-0">2.1.0</a>: 2013-12-15
+
+### Fixes
+
+  * Fixed a bug that memoization key hash collision on armv7hl.
+    Memoization feature is removed for this fix. If you get
+    performance issue. Please report it. We will solve the issue.
+    [GitHub#3] [Reported by mtasaka]
+
+### Thanks
+
+  * mtasaka
+
 ## <a id="2-0-9">2.0.9</a>: 2013-09-20
 
 Locale handling fix release.
