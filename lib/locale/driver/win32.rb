@@ -22,7 +22,7 @@
 require "locale/driver/env"
 require "locale/driver/win32_table"
 
-require "dl/import"
+require "fiddle/import"
 
 module Locale
   # Locale::Driver::Win32 module for win32.
@@ -31,7 +31,7 @@ module Locale
   module Driver
     module Win32
       module Kernel32
-        extend DL::Importer
+        extend Fiddle::Importer
         dlload "kernel32.dll"
         extern "int GetThreadLocale()"
       end
