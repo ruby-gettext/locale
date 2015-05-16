@@ -1,5 +1,16 @@
 # News
 
+## <a id="2-1-1">2.1.1</a>: 2015-05-16
+
+### Improvements
+
+  * Migrated to Fiddle from DL. Because DL is deprecated.
+    [GitHub#5] [Patch by moguno]
+
+### Thanks
+
+  * moguno
+
 ## <a id="2-1-0">2.1.0</a>: 2013-12-15
 
 ### Fixes
