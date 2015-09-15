@@ -1,5 +1,17 @@
 # News
 
+## <a id="2-1-2">2.1.2</a>: 2015-09-15
+
+### Improvements
+
+  * Improved GNU gettext compatibility: Ignored `LANGUAGE` environment
+    variable when either `LC_ALL`, `LC_MESSAGES` or `LANG` is C.
+    [GitHub#6] [Reported by Hleb Valoshka]
+
+### Thanks
+
+  * Hleb Valoshka
+
 ## <a id="2-1-1">2.1.1</a>: 2015-05-16
 
 ### Improvements
