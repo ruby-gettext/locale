@@ -164,6 +164,81 @@ class TestDetectGeneral < Test::Unit::TestCase
       assert_equal "Shift_JIS", Locale.charset
     end
 
+    test "LC_ALL=C" do
+      ENV["LC_ALL"] = "C"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
+    test "LC_MESSAGES=C" do
+      ENV["LC_MESSAGES"] = "C"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
+    test "LANG=C" do
+      ENV["LANG"] = "C"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
+    test "LC_ALL and LC_MESSAGES=C" do
+      ENV["LC_ALL"] = "ja_JP.Shift_JIS"
+      ENV["LC_MESSAGES"] = "C"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
+
+      assert_equal([
+                     Locale::Tag::Posix.new("zh", "CN", "UTF-8"),
+                     Locale::Tag::Posix.new("ja", "JP"),
+                   ],
+                   Locale.current)
+    end
+
+    test "LC_ALL and LANG=C" do
+      ENV["LC_ALL"] = "ja_JP.Shift_JIS"
+      ENV["LANG"] = "C"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
+
+      assert_equal([
+                     Locale::Tag::Posix.new("zh", "CN", "UTF-8"),
+                     Locale::Tag::Posix.new("ja", "JP"),
+                   ],
+                   Locale.current)
+    end
+
+    test "LC_ALL=C and LC_MESSAGES" do
+      ENV["LC_ALL"] = "C"
+      ENV["LC_MESSAGES"] = "ja_JP.Shift_JIS"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
+    test "LC_ALL=C and LANG" do
+      ENV["LC_ALL"] = "C"
+      ENV["LANG"] = "ja_JP.Shift_JIS"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
+    test "LC_MESSAGES=C and LANG" do
+      ENV["LC_MESSAGES"] = "C"
+      ENV["LANG"] = "ja_JP.Shift_JIS"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
+
+      assert_equal([Locale::Tag::Simple.new("en")],
+                   Locale.current)
+    end
+
     test "strip" do
       ENV["LC_ALL"] = "ja_JP.Shift_JIS"
       ENV["LANGUAGE"] = nil
