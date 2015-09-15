@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2015  Kouhei Sutou <kou@clear-code.com>
 # Copyright (C) 2012  Hleb Valoshka
 # Copyright (C) 2009-2010  Masao Mutoh
 #
@@ -137,59 +137,61 @@ class TestDetectGeneral < Test::Unit::TestCase
     assert_equal "UTF-8", Locale.charset
   end
 
-  def test_language
-    ENV["LC_ALL"] = "ja_JP.Shift_JIS"
-    ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
+  sub_test_case "#language" do
+    test "LC_ALL" do
+      ENV["LC_ALL"] = "ja_JP.Shift_JIS"
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
 
-    tags = Locale.current
-    assert_equal Locale::Tag::Posix, tags[0].class
-    assert_equal Locale::Tag::Posix, tags[1].class
+      tags = Locale.current
+      assert_equal Locale::Tag::Posix, tags[0].class
+      assert_equal Locale::Tag::Posix, tags[1].class
 
-    assert_equal "zh", tags.language
-    assert_equal "CN", tags.region
-    assert_equal "UTF-8", tags.charset
+      assert_equal "zh", tags.language
+      assert_equal "CN", tags.region
+      assert_equal "UTF-8", tags.charset
 
-    assert_equal "zh", tags[0].language
-    assert_equal "CN", tags[0].region
-    assert_equal "UTF-8", tags[0].charset
+      assert_equal "zh", tags[0].language
+      assert_equal "CN", tags[0].region
+      assert_equal "UTF-8", tags[0].charset
 
-    assert_equal "ja", tags[1].language
-    assert_equal "JP", tags[1].region
-    assert_equal nil, tags[1].charset
+      assert_equal "ja", tags[1].language
+      assert_equal "JP", tags[1].region
+      assert_equal nil, tags[1].charset
 
-    assert_equal Locale::TagList.new([Locale::Tag::Posix.new("zh", "CN", "UTF-8"), 
-	           Locale::Tag::Posix.new("ja", "JP")]), tags
+      assert_equal Locale::TagList.new([Locale::Tag::Posix.new("zh", "CN", "UTF-8"),
+                   Locale::Tag::Posix.new("ja", "JP")]), tags
 
-    assert_equal "Shift_JIS", Locale.charset
-  end
+      assert_equal "Shift_JIS", Locale.charset
+    end
 
-  def test_language_strip
-    ENV["LC_ALL"] = "ja_JP.Shift_JIS"
-    ENV["LANGUAGE"] = nil
+    test "strip" do
+      ENV["LC_ALL"] = "ja_JP.Shift_JIS"
+      ENV["LANGUAGE"] = nil
 
-    tags = Locale.current
-    assert_equal 1, tags.size
-    assert_equal Locale::Tag::Posix, tags[0].class
-    assert_equal "ja", tags.language
-    assert_equal "ja", tags[0].language
-    Locale.clear
-    ENV["LANGUAGE"] = ""
+      tags = Locale.current
+      assert_equal 1, tags.size
+      assert_equal Locale::Tag::Posix, tags[0].class
+      assert_equal "ja", tags.language
+      assert_equal "ja", tags[0].language
+      Locale.clear
+      ENV["LANGUAGE"] = ""
 
-    tags = Locale.current
-    assert_equal 1, tags.size
-    assert_equal Locale::Tag::Posix, tags[0].class
-    assert_equal "ja", tags.language
-    assert_equal "ja", tags[0].language
-    Locale.clear
-    ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
+      tags = Locale.current
+      assert_equal 1, tags.size
+      assert_equal Locale::Tag::Posix, tags[0].class
+      assert_equal "ja", tags.language
+      assert_equal "ja", tags[0].language
+      Locale.clear
+      ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP"
 
-    tags = Locale.current
-    assert_equal 2, tags.size
-    assert_equal Locale::Tag::Posix, tags[0].class
-    assert_equal Locale::Tag::Posix, tags[1].class
-    assert_equal "zh", tags.language
-    assert_equal "zh", tags[0].language
-    assert_equal "ja", tags[1].language
+      tags = Locale.current
+      assert_equal 2, tags.size
+      assert_equal Locale::Tag::Posix, tags[0].class
+      assert_equal Locale::Tag::Posix, tags[1].class
+      assert_equal "zh", tags.language
+      assert_equal "zh", tags[0].language
+      assert_equal "ja", tags[1].language
+    end
   end
 
   def test_no_charset
