@@ -35,7 +35,6 @@ end
 
 helper = Bundler::GemHelper.new(base_dir)
 helper.install
-spec = helper.gemspec
 
 desc "Run tests"
 task :test do
