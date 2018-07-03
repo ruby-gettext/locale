@@ -1,11 +1,11 @@
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - rbx-19mode
+  - 2.2
+  - 2.3
+  - 2.4.4
+  - 2.5.1
+#  - rbx-2
 #  - jruby
-#  - ruby-head
-env:
-  - JRUBY_OPTS=-Xcext.enabled=true
+  - ruby-head
 notifications:
   recipients:
-    - travis@clear-code.com
+    - ruby-gettext@commit-email.info
