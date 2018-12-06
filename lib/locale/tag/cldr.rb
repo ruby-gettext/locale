@@ -2,6 +2,7 @@
   locale/tag/cldr.rb - Locale::Tag::CLDR
 
   Copyright (C) 2008,2009  Masao Mutoh
+  Copyright (C) 2018  Kouhei Sutou <kou@clear-code.com>
 
   You may redistribute it and/or modify it under the same
   license terms as Ruby.
@@ -28,9 +29,10 @@ module Locale
       class << self
         # Parse the language tag and return the new Locale::Tag::CLDR. 
         def parse(tag)
-          if tag =~ /\APOSIX\Z/  # This is the special case of POSIX locale but match this regexp.
+          case tag
+          when /\APOSIX\Z/  # This is the special case of POSIX locale but match this regexp.
             nil
-          elsif tag =~ TAG_RE
+          when TAG_RE
             lang, script, region, subtag = $1, $2, $3, $4
             
             extensions = {}

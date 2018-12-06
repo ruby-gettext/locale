@@ -2,6 +2,7 @@
   locale/tag/posix.rb - Locale::Tag::Posix
 
   Copyright (C) 2008  Masao Mutoh
+  Copyright (C) 2018  Kouhei Sutou <kou@clear-code.com>
 
   You may redistribute it and/or modify it under the same
   license terms as Ruby.
@@ -30,11 +31,12 @@ module Locale
       end
 
       def self.parse(tag)
-        if tag =~ /^(C|POSIX)$/
+        case tag
+        when /^(C|POSIX)$/
           ret = self.new("en", "US")
           ret.tag = tag
           ret
-        elsif tag =~ TAG_RE
+        when TAG_RE
           ret = self.new($1, $2, $3, $4)
           ret.tag = tag
           ret

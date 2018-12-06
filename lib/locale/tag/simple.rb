@@ -2,6 +2,7 @@
   locale/tag/simple.rb - Locale::Tag::Simple
 
   Copyright (C) 2008,2009  Masao Mutoh
+  Copyright (C) 2018  Kouhei Sutou <kou@clear-code.com>
 
   You may redistribute it and/or modify it under the same
   license terms as Ruby.
@@ -52,7 +53,8 @@ module Locale
       class << self
         # Parse the language tag and return the new Locale::Tag::Simple. 
         def parse(tag)
-          if tag =~ TAG_RE
+          case tag
+          when TAG_RE
             ret = self.new($1, $2)
             ret.tag = tag
             ret
