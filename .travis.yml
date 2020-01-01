@@ -1,11 +1,7 @@
 rvm:
   - 2.2
   - 2.3
-  - 2.4.4
-  - 2.5.1
-#  - rbx-2
-#  - jruby
+  - 2.4
+  - 2.5
+  - 2.6
   - ruby-head
-notifications:
-  recipients:
-    - ruby-gettext@commit-email.info
