@@ -1,5 +1,11 @@
 # News
 
+## <a id="2-1-3">2.1.3</a>: 2020-02-12
+
+### Improvements
+
+  * Suppressed warnings.
+
 ## <a id="2-1-2">2.1.2</a>: 2015-09-15
 
 ### Improvements
