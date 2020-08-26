@@ -11,15 +11,20 @@ jobs:
           - "2.5"
           - "2.6"
           - "2.7"
+          - truffleruby
+          - truffleruby-head 
         runs-on:
           - ubuntu-latest
           - macos-latest
           - windows-latest
+        allow_failures:
+          - rvm: truffleruby-head
+          - rvm: truffleruby
     name: ${{ matrix.ruby-version}} on ${{ matrix.runs-on }}
     runs-on: ${{ matrix.runs-on }}
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-ruby@master
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
       - name: Install Bundler
