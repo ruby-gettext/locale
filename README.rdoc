@@ -29,7 +29,7 @@ other i18n/l10n libs/apps to handle major locale ID standards.
 
 == Requirements
 * Ruby-1.8.7 or later <http://www.ruby-lang.org/ja/>
-* JRuby-1.1.4 or later <http://jruby.codehaus.org/>
+* JRuby-1.1.4 or later <https://www.jruby.org/>
 
 == Install
 
