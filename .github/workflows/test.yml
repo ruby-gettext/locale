@@ -11,7 +11,7 @@ jobs:
           - "2.5"
           - "2.6"
           - "2.7"
-          - truffleruby-head 
+          - truffleruby-head
         runs-on:
           - ubuntu-latest
           - macos-latest
@@ -25,9 +25,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
-      - name: Install Bundler
-        run: |
-          gem install bundler
       - name: Install dependencies
         run: |
           bundle install
