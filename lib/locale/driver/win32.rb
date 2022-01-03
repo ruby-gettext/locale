@@ -25,6 +25,7 @@ require "locale/driver/win32_table"
 if RUBY_VERSION < "2.1"
   require "dl/import"
 else
+  require 'fiddle'
   require 'fiddle/import'
   
   # For now map DL to Fiddler versus updating all the code below
@@ -43,8 +44,13 @@ module Locale
   # This is a low-level class. Application shouldn't use this directly.
   module Driver
     module Win32
+    
       module Kernel32
-        extend DL::Importer
+        if RUBY_VERSION < "2.1"
+          extend DL::Importer
+        else
+          extend Fiddle::Importer
+        end
         dlload "kernel32.dll"
         extern "int GetThreadLocale()"
       end
