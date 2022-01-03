@@ -44,6 +44,8 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
     s.test_files = Dir.glob("test/test_*.rb")
   end
 
+  s.required_ruby_version = "< 2.3.0"
+  
   s.add_development_dependency("rake")
   s.add_development_dependency("bundler")
   s.add_development_dependency("yard")
