@@ -22,7 +22,20 @@
 require "locale/driver/env"
 require "locale/driver/win32_table"
 
-require "dl/import"
+if RUBY_VERSION < "2.1"
+  require "dl/import"
+else
+  require 'fiddle/import'
+  
+  # For now map DL to Fiddler versus updating all the code below
+  # net-ssh did it first
+  module DL
+    CPtr ||= Fiddle::Pointer
+    if RUBY_PLATFORM != "java"
+      RUBY_FREE ||= Fiddle::RUBY_FREE
+    end
+  end
+end
 
 module Locale
   # Locale::Driver::Win32 module for win32.
