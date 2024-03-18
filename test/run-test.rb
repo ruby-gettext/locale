@@ -24,10 +24,9 @@ lib_dir = File.join(base_dir, "lib")
 test_dir = File.join(base_dir, "test")
 
 $LOAD_PATH.unshift(lib_dir)
-$LOAD_PATH.unshift(test_dir)
 
 require "test-unit"
 require "test/unit/notify"
 require "test/unit/rr"
 
-exit Test::Unit::AutoRunner.run(true)
+exit Test::Unit::AutoRunner.run(true, test_dir)
