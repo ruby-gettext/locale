@@ -42,7 +42,7 @@ module Locale
         locales = []
 
         # QUERY_STRING "lang"
-        if langs = req[:query_langs].compact
+        if langs = req[:query_langs]
           langs.each do |lang|
             locales << Locale::Tag.parse(lang)
           end
@@ -50,7 +50,7 @@ module Locale
 
         unless locales.size > 0
           # COOKIE "lang"
-          if langs = req[:cookie_langs].compact
+          if langs = req[:cookie_langs]
             langs.each do |lang|
               locales << Locale::Tag.parse(lang) if lang.size > 0
             end
@@ -95,8 +95,8 @@ module Locale
       def set_request(query_langs, cookie_langs, accept_language, accept_charset)
         Locale.clear
         Thread.current[:current_request] = {
-          :query_langs => query_langs, 
-          :cookie_langs => cookie_langs, 
+          :query_langs => query_langs.compact,
+          :cookie_langs => cookie_langs.compact,
           :accept_language => accept_language,
           :accept_charset => accept_charset
         }
