@@ -1,5 +1,19 @@
 # News
 
+## 2.1.4: 2024-03-18
+
+### Fixes
+
+  * `Locale::Middleware`: Fixed a bug that `lang` cookie and
+    `Accept-Language`/`Accept-Charset` HTTP headers never used.
+    * GH-15
+    * GH-16
+    * Patch by OZAWA Sakuro
+
+### Thanks
+
+  * OZAWA Sakuro
+
 ## <a id="2-1-3">2.1.3</a>: 2020-02-12
 
 ### Improvements
