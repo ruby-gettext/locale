@@ -60,7 +60,7 @@ begin
 
       ENV["LC_ALL"] = "C"
       Locale::Driver::Win32.set_thread_locale_id(0x0409)
-      assert_equal Locale::Tag::Common.parse("C"), Locale::Driver::Win32.locales[0]
+      assert_equal Locale::Tag::Common.parse("en_US"), Locale::Driver::Win32.locales[0]
       assert_equal "CP1252", Locale::Driver::Win32.charset
     end
   end
