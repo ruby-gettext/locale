@@ -27,11 +27,20 @@ class TestDetectGeneral < Test::Unit::TestCase
   def setup
     Locale.init
     Locale.clear_all
+    if Locale::Driver.const_defined?(:Win32)
+      Locale::Driver::Win32.set_thread_locale_id(0xffff) # invalid
+    end
     ENV["LC_ALL"] = nil
     ENV["LC_CTYPE"] = nil
     ENV["LC_MESSAGES"] = nil
     ENV["LANG"] = nil
     ENV["LANGUAGE"] = nil
+  end
+
+  def teardown
+    if Locale::Driver.const_defined?(:Win32)
+      Locale::Driver::Win32.set_thread_locale_id(nil)
+    end
   end
 
   def test_lc_all
