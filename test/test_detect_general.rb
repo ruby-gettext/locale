@@ -27,7 +27,10 @@ class TestDetectGeneral < Test::Unit::TestCase
   def setup
     Locale.init
     Locale.clear_all
-    if Locale::Driver.const_defined?(:Win32)
+    @have_win32_driver =
+      (Locale::Driver.const_defined?(:Win32) and
+       Locale::Driver::Win32.respond_to?(:set_thread_locale_id))
+    if @have_win32_driver
       Locale::Driver::Win32.set_thread_locale_id(0xffff) # invalid
     end
     ENV["LC_ALL"] = nil
@@ -38,7 +41,7 @@ class TestDetectGeneral < Test::Unit::TestCase
   end
 
   def teardown
-    if Locale::Driver.const_defined?(:Win32)
+    if @have_win32_driver
       Locale::Driver::Win32.set_thread_locale_id(nil)
     end
   end
