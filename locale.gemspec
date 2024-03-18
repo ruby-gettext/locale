@@ -44,11 +44,10 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
     s.test_files = Dir.glob("test/test_*.rb")
   end
 
-  s.add_development_dependency("rake")
   s.add_development_dependency("bundler")
-  s.add_development_dependency("yard")
   s.add_development_dependency("kramdown")
+  s.add_development_dependency("rake")
   s.add_development_dependency("test-unit")
-  s.add_development_dependency("test-unit-notify")
   s.add_development_dependency("test-unit-rr")
+  s.add_development_dependency("yard")
 end
