@@ -25,10 +25,14 @@ begin
   class TestDiverJRuby < Test::Unit::TestCase
 
     def setup
+      Locale.init
+      Locale.clear_all
       ENV["LC_ALL"] = nil
       ENV["LC_CTYPE"] = nil
+      ENV["LC_MESSAGES"] = nil
       ENV["LANG"] = nil
       ENV["LANGUAGE"] = nil
+      set_locale(Locale::Tag::Common.parse("en-US"))
     end
 
     def set_locale(tag)
@@ -56,7 +60,7 @@ begin
       assert_equal Locale::Tag::Posix.parse("ja_JP"), Locale::Driver::JRuby.locales[0]
   
       ENV["LC_ALL"] = "C"
-      assert_equal Locale::Tag::Posix.parse("C"), Locale::Driver::JRuby.locales[0]
+      assert_equal Locale::Tag::Common.parse("en-US"), Locale::Driver::JRuby.locales[0]
     end
   end
 

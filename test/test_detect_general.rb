@@ -177,6 +177,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LC_ALL=C" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LC_ALL"] = "C"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
 
@@ -185,6 +187,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LC_MESSAGES=C" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LC_MESSAGES"] = "C"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
 
@@ -193,6 +197,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LANG=C" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LANG"] = "C"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
 
@@ -225,6 +231,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LC_ALL=C and LC_MESSAGES" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LC_ALL"] = "C"
       ENV["LC_MESSAGES"] = "ja_JP.Shift_JIS"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
@@ -234,6 +242,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LC_ALL=C and LANG" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LC_ALL"] = "C"
       ENV["LANG"] = "ja_JP.Shift_JIS"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
@@ -243,6 +253,8 @@ class TestDetectGeneral < Test::Unit::TestCase
     end
 
     test "LC_MESSAGES=C and LANG" do
+      omit("Can't disable the JRuby's default") if jruby?
+
       ENV["LC_MESSAGES"] = "C"
       ENV["LANG"] = "ja_JP.Shift_JIS"
       ENV["LANGUAGE"] = "zh_CN.UTF-8:ja_JP" # ignored
