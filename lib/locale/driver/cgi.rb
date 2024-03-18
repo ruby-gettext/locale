@@ -42,7 +42,7 @@ module Locale
         locales = []
 
         # QUERY_STRING "lang"
-        if langs = req[:query_langs]
+        if langs = req[:query_langs].compact
           langs.each do |lang|
             locales << Locale::Tag.parse(lang)
           end
@@ -50,7 +50,7 @@ module Locale
 
         unless locales.size > 0
           # COOKIE "lang"
-          if langs = req[:cookie_langs]
+          if langs = req[:cookie_langs].compact
             langs.each do |lang|
               locales << Locale::Tag.parse(lang) if lang.size > 0
             end
