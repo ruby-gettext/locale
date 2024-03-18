@@ -5,8 +5,11 @@ begin
   class TestDiverWin32 < Test::Unit::TestCase
 
     def setup
+      Locale.init
+      Locale.clear_all
       ENV["LC_ALL"] = nil
       ENV["LC_CTYPE"] = nil
+      ENV["LC_MESSAGES"] = nil
       ENV["LANG"] = nil
       ENV["LANGUAGE"] = nil
       Locale::Driver::Win32.set_thread_locale_id(nil)
