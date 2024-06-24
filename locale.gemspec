@@ -32,7 +32,7 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
   s.authors = ["Kouhei Sutou", "Masao Mutoh"]
   s.email = ["kou@clear-code.com", "mutomasa at gmail.com"]
   s.homepage = "https://github.com/ruby-gettext/locale"
-  s.licenses = ["Ruby", "LGPLv3+"]
+  s.licenses = ["Ruby", "LGPL-3.0-or-later"]
   s.require_paths = ["lib"]
   Dir.chdir(base_dir) do
     s.files = Dir.glob("{lib,samples}/**/*").find_all do |path|
