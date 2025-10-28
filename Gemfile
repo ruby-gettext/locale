@@ -1,6 +1,6 @@
-# -*- mode: ruby; coding: utf-8 -*-
+# -*- ruby -*-
 #
-# Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2025  Kouhei Sutou <kou@clear-code.com>
 #
 # License: Ruby's or LGPL
 #
@@ -20,3 +20,6 @@
 source 'https://rubygems.org'
 
 gemspec
+
+gem "cgi"
+gem "fiddle"
