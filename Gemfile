@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2012-2025  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2026  Sutou Kouhei <kou@clear-code.com>
 #
 # License: Ruby's or LGPL
 #
@@ -22,4 +22,3 @@ source 'https://rubygems.org'
 gemspec
 
 gem "cgi"
-gem "fiddle"

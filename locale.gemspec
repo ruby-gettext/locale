@@ -1,6 +1,6 @@
-# -*- mode: ruby; coding: utf-8 -*-
+# -*- mode: ruby -*-
 #
-# Copyright (C) 2012-2013  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2026  Sutou Kouhei <kou@clear-code.com>
 # Copyright (C) 2009  Masao Mutoh
 #
 # License: Ruby's or LGPL
@@ -43,6 +43,9 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
     s.files += Dir.glob("doc/text/*.*")
     s.test_files = Dir.glob("test/test_*.rb")
   end
+
+  # This is needed only for Windows.
+  s.add_dependency("fiddle")
 
   s.add_development_dependency("bundler")
   s.add_development_dependency("kramdown")
