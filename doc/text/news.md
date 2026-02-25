@@ -1,5 +1,24 @@
 # News
 
+## 2.1.5: 2026-02-25
+
+### Improvements
+
+  * Use SPDX license identifier in gemspec.
+    * GH-18
+    * Patch by Dan Čermák
+
+  * Add Fiddle as a runtime dependency for Ruby 4.0. Ruby 4.0 or later
+    doesn't ship Fiddle as a default gem.
+    * GH-19
+    * GH-20
+    * Reported by Mamoru TASAKA
+
+### Thanks
+
+  * Dan Čermák
+  * Mamoru TASAKA
+
 ## 2.1.4: 2024-03-18
 
 ### Fixes
