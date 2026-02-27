@@ -41,7 +41,7 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
     s.files += ["COPYING", "ChangeLog", "README.rdoc", "Rakefile"]
     s.files += ["Gemfile", "#{s.name}.gemspec", ".yardopts"]
     s.files += Dir.glob("doc/text/*.*")
-    s.test_files = Dir.glob("test/test_*.rb")
+    s.test_files = Dir.glob("test/*.rb")
   end
 
   # This is needed only for Windows.
