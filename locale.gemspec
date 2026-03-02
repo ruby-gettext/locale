@@ -45,7 +45,9 @@ Ruby-Locale is the pure ruby library which provides basic APIs for localization.
   end
 
   # This is needed only for Windows.
-  s.add_dependency("fiddle")
+  if RUBY_PLATFORM =~ /mingw|mswin|x64_mingw/
+    s.add_dependency("fiddle")
+  end
 
   s.add_development_dependency("bundler")
   s.add_development_dependency("kramdown")
